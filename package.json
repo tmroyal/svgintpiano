@@ -1,0 +1,18 @@
+{
+  "name": "svgpiano",
+  "version": "0.0.1-a",
+  "description": "A dependency free piano display plugin for browsers using svg.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.js",
+    "build": "parcel build index.js",
+    "rollup": "rollup index.js --file bundle.js --format iife"
+  },
+  "author": "Thomas Royal",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "rollup": "^2.26.6"
+  },
+  "dependencies": {}
+}
