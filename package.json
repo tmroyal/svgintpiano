@@ -5,9 +5,7 @@
   "description": "A dependency free piano display and interaction plugin for browsers using svg.",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel index.js",
-    "build": "parcel build index.js",
-    "rollup": "rollup index.js --file svgintpiano.js --format iife"
+    "build": "rollup src/index.js --file dist/svgintpiano.js --format iife"
   },
   "author": "Thomas Royal",
   "license": "MIT",
