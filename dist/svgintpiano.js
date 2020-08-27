@@ -1,28 +1,13 @@
-(function () {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.SVGIntPiano = factory());
+}(this, (function () { 'use strict';
 
-  function noop(){
-
+  function index(){
+    console.log("bleh");
   }
 
-  class Key {
-    constructor(props){
-      props = props || {};
-      this.midiNumber = props.midiNumber || 0;
-      this.cssPrefix = props.cssPrefix || "";
-      this.keyOn = props.keyOn || noop;
-      this.keyOff = props.keyOff || noop;
+  return index;
 
-      this.draw();
-    }
-
-    draw(){
-      console.log("hello word");
-    }
-
-
-  }
-
-  const k = new Key;
-
-}());
+})));
