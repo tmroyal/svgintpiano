@@ -55,8 +55,8 @@
       props.highNote = props.highNote || 72;
       props.margin = props.margin || 1;
       props.whiteKeySpacing = props.whiteKeySpacing || 1;
-      props.blackKeyVScale = props.blackKeyVScale || 0.618;
-      props.blackKeyHScale = props.blackKeyHScale || 0.45;
+      props.blackKeyVScale = props.blackKeyVScale || 0.668;
+      props.blackKeyHScale = props.blackKeyHScale || 0.55;
       props.width = props.width || 500;
       props.height = props.height || 180;
       props.cssClassPrefix = props.cssClassPrefix || 'svgkey';
