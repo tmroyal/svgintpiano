@@ -2,6 +2,14 @@
   stroke: black;
   fill: white;
   stroke-width: 0.5px;
+  rx: 2;
+}
+
+.svgkey_on {
+  stroke: black;
+  fill: red;
+  stroke-width: 0.5px;
+  rx: 2;
 }
 
 .svgkey_off:hover {
@@ -14,6 +22,14 @@
   stroke: black;
   fill: black;
   stroke-width: 0.5px;
+  rx: 2;
+}
+
+.svgkey_black_on {
+  stroke: black;
+  fill: red;
+  stroke-width: 0.5px;
+  rx: 2;
 }
 
 .svgkey_black_off:hover {
