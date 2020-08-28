@@ -50,6 +50,7 @@
     }
 
     ensurePropsContainData(props){
+      // set defaults if they do not exist
       props.lowNote = props.lowNote || 48;
       props.highNote = props.highNote || 72;
       props.margin = props.margin || 1;
