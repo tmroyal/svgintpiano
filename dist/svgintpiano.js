@@ -53,7 +53,7 @@
       props.lowNote = props.lowNote || 48;
       props.highNote = props.highNote || 72;
       props.margin = props.margin || 1;
-      props.whiteKeySpacing = props.whiteKeySpacing || 1;
+      props.whiteKeySpacing = props.whiteKeySpacing || 2;
       props.blackKeyScale = props.blackKeyScale || 0.618;
       props.width = props.width || 500;
       props.height = props.height || 180;
@@ -119,6 +119,10 @@
         }
 
       }
+    }
+
+    setupBlackKeys(props){
+
     }
 
     setupKeys(props){
