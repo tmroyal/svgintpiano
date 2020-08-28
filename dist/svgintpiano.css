@@ -1,5 +1,11 @@
 .svgkey_off {
   stroke: black;
   fill: white;
-  stroke-width: 4px;
+  stroke-width: 1px;
+}
+
+.svgkey_off:hover {
+  stroke: black;
+  fill: lightblue;
+  stroke-width: 1px;
 }

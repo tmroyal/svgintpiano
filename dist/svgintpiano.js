@@ -37,35 +37,101 @@
   }
 
   const svg_ns = 'http://www.w3.org/2000/svg';
+  const WHITE_PCS = [0, 2, 4, 5, 7, 9, 11];
 
   class SVGPiano{
     constructor(elementName, props){
       props = props || {};
+      this.ensurePropsContainData(props);
+
       this.keys = [];
       this.setupSVG(elementName, props);
-      this.setupKeys();
+      this.setupKeys(props);
     }
 
+    ensurePropsContainData(props){
+      props.lowNote = props.lowNote || 48;
+      props.highNote = props.highNote || 72;
+      props.margin = props.margin || 1;
+      props.whiteKeySpacing = props.whiteKeySpacing || 1;
+      props.blackKeyScale = props.blackKeyScale || 0.618;
+      props.width = props.width || 500;
+      props.height = props.height || 180;
+
+      if (props.lowNote > props.highNote){
+        console.warn("SVGIntPiano: improperly specified lowNote and/or highNote");
+        props.highNote = props.lowNote;
+      }
+    }
+    
     setupSVG(elementName, props){
       this.container = document.getElementById(elementName);
 
       this.svg = document.createElementNS(svg_ns, 'svg');
-      this.svg.setAttributeNS(null, 'width', props.width || '500px');
-      this.svg.setAttributeNS(null, 'height', props.height || '180px');
+      this.svg.setAttributeNS(null, 'width', props.width);
+      this.svg.setAttributeNS(null, 'height', props.height);
 
       this.container.appendChild(this.svg);
     }
 
-    setupKeys(){
+    calcNumWhiteKeys(props){
+      let sum = 0;
+
+      for (let currentNote = props.lowNote; currentNote <= props.highNote; currentNote++){
+        if (WHITE_PCS.includes(currentNote % 12)){ sum += 1; }
+      }
+
+      return sum;
+    }
+
+    /* 
+      We determine available width of white keys using:
+
+        available width = width of svg - 2*margin - white key spacing * gaps between keys
+
+      Where the gaps between keys is (numWhiteKeys-1): (we dont include outer gaps)
+
+      We divide this by numWhiteKeys to get the white key width
+    */
+    calcWhiteKeyWidth(numWhiteKeys, props){
+      return (props.width - 2*props.margin - (numWhiteKeys-1)*props.whiteKeySpacing) / numWhiteKeys;
+    }
+
+    setupWhiteKeys(props, whiteKeyWidth, whiteKeyHeight){
+
       const key_props = {
-        width: 50,
-        height: 180,
-        x: 20
+        width: whiteKeyWidth,
+        height: whiteKeyHeight,
+        x: props.margin,
+        y: props.margin
       };
 
-      this.keys.push(new Key(this.svg, svg_ns, key_props));
+      let currentKey = 0;
+
+      for (let currentNote = props.lowNote; currentNote <= props.highNote; currentNote++){
+
+        if (WHITE_PCS.includes(currentNote % 12)){
+          key_props.x = props.margin + currentKey*(whiteKeyWidth+props.whiteKeySpacing);
+
+          this.keys.push(new Key(this.svg, svg_ns, key_props));
+
+          currentKey += 1;
+        }
+
+      }
+    }
+
+    setupKeys(props){
+      const numWhiteKeys = this.calcNumWhiteKeys(props);
+      const whiteKeyWidth = this.calcWhiteKeyWidth(numWhiteKeys, props);
+      const whiteKeyHeight = props.height - 2*props.margin;
+      const blackKeyHeight = whiteKeyHeight * props.blackKeyScale;
+
+      this.setupWhiteKeys(props, whiteKeyWidth, whiteKeyHeight);
     }
   }
+
+  // TODO: private methods of SVGPiano
 
   return SVGPiano;
 
