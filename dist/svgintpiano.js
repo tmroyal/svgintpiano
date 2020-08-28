@@ -53,8 +53,9 @@
       props.lowNote = props.lowNote || 48;
       props.highNote = props.highNote || 72;
       props.margin = props.margin || 1;
-      props.whiteKeySpacing = props.whiteKeySpacing || 2;
-      props.blackKeyScale = props.blackKeyScale || 0.618;
+      props.whiteKeySpacing = props.whiteKeySpacing || 1;
+      props.blackKeyVScale = props.blackKeyVScale || 0.618;
+      props.blackKeyHScale = props.blackKeyHScale || 0.45;
       props.width = props.width || 500;
       props.height = props.height || 180;
 
@@ -121,17 +122,44 @@
       }
     }
 
-    setupBlackKeys(props){
+    // we increment through all available keys. 
+    // if we encouter a white key, increment white 
+    // key index "currentWhiteKey". Else, setup a black key
+    // at the place where whitekey would be, minus
+    // 1/2 black key width
+    setupBlackKeys(props, blackKeyWidth, blackKeyHeight, whiteKeyWidth){
+      const key_props = {
+        width: blackKeyWidth,
+        height: blackKeyHeight,
+        x: props.margin,
+        y: props.margin
+      };
 
+      let currentWhiteKey = 0;
+
+      for (let currentNote = props.lowNote; currentNote <= props.highNote; currentNote++){
+
+        if (WHITE_PCS.includes(currentNote % 12)){
+          currentWhiteKey += 1;
+        } else {
+          let whiteKeyX = props.margin + currentWhiteKey*(whiteKeyWidth+props.whiteKeySpacing);
+          key_props.x = whiteKeyX - blackKeyWidth/2 - props.whiteKeySpacing/2;
+
+          this.keys.push(new Key(this.svg, svg_ns, key_props));
+        }
+
+      }
     }
 
     setupKeys(props){
       const numWhiteKeys = this.calcNumWhiteKeys(props);
       const whiteKeyWidth = this.calcWhiteKeyWidth(numWhiteKeys, props);
       const whiteKeyHeight = props.height - 2*props.margin;
-      const blackKeyHeight = whiteKeyHeight * props.blackKeyScale;
+      const blackKeyHeight = whiteKeyHeight * props.blackKeyVScale;
+      const blackKeyWidth = whiteKeyWidth * props.blackKeyHScale;
 
       this.setupWhiteKeys(props, whiteKeyWidth, whiteKeyHeight);
+      this.setupBlackKeys(props, blackKeyWidth, blackKeyHeight, whiteKeyWidth);
     }
   }
 
