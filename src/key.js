@@ -22,7 +22,7 @@ export default class Key {
     this.rect.setAttributeNS(null, 'height', props.height || 0);
     this.rect.setAttributeNS(null, 'x', props.x || 0);
     // y is always drawn from the top
-    this.rect.setAttributeNS(null, 'y', 0);
+    this.rect.setAttributeNS(null, 'y', props.y || 0);
     this.rect.className.baseVal = this.cssInactiveName;
 
     svg.appendChild(this.rect);

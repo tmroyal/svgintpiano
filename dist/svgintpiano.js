@@ -28,7 +28,7 @@
       this.rect.setAttributeNS(null, 'height', props.height || 0);
       this.rect.setAttributeNS(null, 'x', props.x || 0);
       // y is always drawn from the top
-      this.rect.setAttributeNS(null, 'y', 0);
+      this.rect.setAttributeNS(null, 'y', props.y || 0);
       this.rect.className.baseVal = this.cssInactiveName;
 
       svg.appendChild(this.rect);
@@ -105,7 +105,8 @@
         width: whiteKeyWidth,
         height: whiteKeyHeight,
         x: props.margin,
-        y: props.margin
+        y: props.margin,
+        midiNumber: 0
       };
 
       let currentKey = 0;
@@ -114,6 +115,7 @@
 
         if (WHITE_PCS.includes(currentNote % 12)){
           key_props.x = props.margin + currentKey*(whiteKeyWidth+props.whiteKeySpacing);
+          key_props.midiNumber = currentNote;
 
           this.keys.push(new Key(this.svg, svg_ns, key_props));
 
@@ -133,7 +135,8 @@
         width: blackKeyWidth,
         height: blackKeyHeight,
         x: props.margin,
-        y: props.margin
+        y: props.margin,
+        midiNumber: 0
       };
 
       let currentWhiteKey = 0;
@@ -145,6 +148,7 @@
         } else {
           let whiteKeyX = props.margin + currentWhiteKey*(whiteKeyWidth+props.whiteKeySpacing);
           key_props.x = whiteKeyX - blackKeyWidth/2 - props.whiteKeySpacing/2;
+          key_props.midiNumber = currentNote;
 
           this.keys.push(new Key(this.svg, svg_ns, key_props));
         }

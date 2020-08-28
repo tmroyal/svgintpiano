@@ -69,7 +69,8 @@ export default class SVGPiano{
       width: whiteKeyWidth,
       height: whiteKeyHeight,
       x: props.margin,
-      y: props.margin
+      y: props.margin,
+      midiNumber: 0
     }
 
     let currentKey = 0;
@@ -78,6 +79,7 @@ export default class SVGPiano{
 
       if (WHITE_PCS.includes(currentNote % 12)){
         key_props.x = props.margin + currentKey*(whiteKeyWidth+props.whiteKeySpacing);
+        key_props.midiNumber = currentNote;
 
         this.keys.push(new Key(this.svg, svg_ns, key_props))
 
@@ -97,7 +99,8 @@ export default class SVGPiano{
       width: blackKeyWidth,
       height: blackKeyHeight,
       x: props.margin,
-      y: props.margin
+      y: props.margin,
+      midiNumber: 0
     }
 
     let currentWhiteKey = 0;
@@ -109,6 +112,7 @@ export default class SVGPiano{
       } else {
         let whiteKeyX = props.margin + currentWhiteKey*(whiteKeyWidth+props.whiteKeySpacing);
         key_props.x = whiteKeyX - blackKeyWidth/2 - props.whiteKeySpacing/2;
+        key_props.midiNumber = currentNote;
 
         this.keys.push(new Key(this.svg, svg_ns, key_props))
       }
