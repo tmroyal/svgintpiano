@@ -17,7 +17,9 @@
         this.on = false;
 
         this.draw(svg, ns, props);
-        this.attachEvents();
+        if (props.interactive){
+          this.attachEvents();
+        }
       }
     }
 
@@ -165,6 +167,10 @@
       props.height = props.height || 180;
       props.cssClassPrefix = props.cssClassPrefix || 'svgkey';
 
+      if (!props.hasOwnProperty("interactive")){
+        props.interactive = true;
+      }
+
       if (props.lowNote > props.highNote){
         console.warn("SVGIntPiano: improperly specified lowNote and/or highNote");
         props.highNote = props.lowNote;
@@ -213,7 +219,8 @@
         y: props.margin,
         midiNumber: 0,
         cssInactiveName: props.cssClassPrefix + "_off",
-        cssActiveName: props.cssClassPrefix + "_on"
+        cssActiveName: props.cssClassPrefix + "_on",
+        interactive: props.interactive
       };
 
       let currentKey = 0;
@@ -245,7 +252,8 @@
         y: props.margin,
         midiNumber: 0,
         cssInactiveName: props.cssClassPrefix + "_black_off",
-        cssActiveName: props.cssClassPrefix + "_black_on"
+        cssActiveName: props.cssClassPrefix + "_black_on",
+        interactive: props.interactive
       };
 
       let currentWhiteKey = 0;

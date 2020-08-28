@@ -13,7 +13,9 @@ export default class Key {
       this.on = false;
 
       this.draw(svg, ns, props);
-      this.attachEvents();
+      if (props.interactive){
+        this.attachEvents();
+      }
     }
   }
 
