@@ -1,4 +1,5 @@
 import Key from "./key"
+import PubSub from "./pubsub"
 
 const svg_ns = 'http://www.w3.org/2000/svg';
 const WHITE_PCS = [0, 2, 4, 5, 7, 9, 11];
@@ -8,9 +9,19 @@ export default class SVGPiano{
     props = props || {};
     this.ensurePropsContainData(props);
 
+    this.pubsub = new PubSub(["keyon", "keyoff"]);
+
     this.keys = [];
     this.setupSVG(elementName, props);
     this.setupKeys(props);
+
+    this.pubsub.subscribe("keyon", function(m){
+      console.log("key on", m);
+    })
+
+    this.pubsub.subscribe("keyoff", function(m){
+      console.log("key off", m);
+    })
   }
 
   ensurePropsContainData(props){
@@ -84,7 +95,7 @@ export default class SVGPiano{
         key_props.x = props.margin + currentKey*(whiteKeyWidth+props.whiteKeySpacing);
         key_props.midiNumber = currentNote;
 
-        this.keys.push(new Key(this.svg, svg_ns, key_props))
+        this.keys.push(new Key(this.svg, svg_ns, key_props, this.pubsub))
 
         currentKey += 1;
       }
@@ -119,7 +130,7 @@ export default class SVGPiano{
         key_props.x = whiteKeyX - blackKeyWidth/2 - props.whiteKeySpacing/2;
         key_props.midiNumber = currentNote;
 
-        this.keys.push(new Key(this.svg, svg_ns, key_props))
+        this.keys.push(new Key(this.svg, svg_ns, key_props, this.pubsub))
       }
 
     }
