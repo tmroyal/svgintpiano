@@ -13,6 +13,12 @@
       console.log(piano);
       // piano.set("on",60)
       // piano.set(false,60)
+      piano.subscribe("keyon", (key)=>{
+        console.log("keyon", key);
+      })
+      piano.subscribe("keyoff", (key)=>{
+        console.log("keyoff", key);
+      })
     </script>
   </body>
 </html>

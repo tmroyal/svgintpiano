@@ -154,14 +154,6 @@
       this.setupSVG(elementName, props);
       this.setupKeys(props);
 
-      this.pubsub.subscribe("keyon", function(m){
-        console.log("key on", m);
-      });
-
-      this.pubsub.subscribe("keyoff", function(m){
-        console.log("key off", m);
-      });
-
       this.lowNote = props.lowNote;
       this.highNote = props.highNote;
     }
@@ -194,6 +186,14 @@
       } else {
         console.warn("Midi number out of range: "+midiNum);
       }
+    }
+
+    subscribe(eventType, callback){
+      return this.pubsub.subscribe(eventType, callback);
+    }
+
+    unsubscribe(eventType, key){
+      return this.pubsub.unsubscribe(eventType, key);
     }
     
     setupSVG(elementName, props){
