@@ -24,12 +24,14 @@
     keyOn(){
       this.on = true;
       this.pubsub.trigger("keyon", this.midiNumber);
+      this.rect.className.baseVal = this.cssActiveName;
     }
 
     keyOff(){
       if (this.on){
         this.on = false;
         this.pubsub.trigger("keyoff", this.midiNumber);
+        this.rect.className.baseVal = this.cssInactiveName;
       }
     }
 
