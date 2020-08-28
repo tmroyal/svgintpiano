@@ -7,5 +7,17 @@
 .svgkey_off:hover {
   stroke: black;
   fill: lightblue;
-  stroke-width: 1px;
+  stroke-width: 0.5px;
+}
+
+.svgkey_black_off {
+  stroke: black;
+  fill: black;
+  stroke-width: 0.5px;
+}
+
+.svgkey_black_off:hover {
+  stroke: black;
+  fill: lightblue;
+  stroke-width: 0.5px;
 }

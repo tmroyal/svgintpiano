@@ -59,6 +59,7 @@
       props.blackKeyHScale = props.blackKeyHScale || 0.45;
       props.width = props.width || 500;
       props.height = props.height || 180;
+      props.cssClassPrefix = props.cssClassPrefix || 'svgkey';
 
       if (props.lowNote > props.highNote){
         console.warn("SVGIntPiano: improperly specified lowNote and/or highNote");
@@ -106,7 +107,9 @@
         height: whiteKeyHeight,
         x: props.margin,
         y: props.margin,
-        midiNumber: 0
+        midiNumber: 0,
+        cssInactiveName: props.cssClassPrefix + "_off",
+        cssActiveName: props.cssClassPrefix + "_on"
       };
 
       let currentKey = 0;
@@ -136,7 +139,9 @@
         height: blackKeyHeight,
         x: props.margin,
         y: props.margin,
-        midiNumber: 0
+        midiNumber: 0,
+        cssInactiveName: props.cssClassPrefix + "_black_off",
+        cssActiveName: props.cssClassPrefix + "_black_on"
       };
 
       let currentWhiteKey = 0;
