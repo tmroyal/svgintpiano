@@ -5,12 +5,14 @@
   "description": "A dependency free piano display and interaction plugin for browsers using svg.",
   "main": "index.js",
   "scripts": {
+    "test": "node -r esm test/testPubSub.js",
     "build": "rollup src/index.js --file dist/svgintpiano.js --format umd --name 'SVGIntPiano'",
     "watch": "rollup src/index.js --file dist/svgintpiano.js --format umd --name 'SVGIntPiano' -w"
   },
   "author": "Thomas Royal",
   "license": "MIT",
   "devDependencies": {
+    "esm": "^3.2.25",
     "rollup": "^2.26.6"
   },
   "dependencies": {}
