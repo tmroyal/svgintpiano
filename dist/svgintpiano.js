@@ -37,6 +37,14 @@
       }
     }
 
+    set(state){
+      if (state === "on" || state){
+        this.rect.className.baseVal = this.cssActiveName;
+      } else if (state === "off" || !state){
+        this.rect.className.baseVal = this.cssInactiveName;
+      }
+    }
+
     attachEvents(){
       this.rect.onmousedown = this.keyOn.bind(this);
       this.rect.onmouseup = this.keyOff.bind(this);
@@ -142,7 +150,7 @@
 
       this.pubsub = new PubSub(["keyon", "keyoff"]);
 
-      this.keys = [];
+      this.keys = {};
       this.setupSVG(elementName, props);
       this.setupKeys(props);
 
@@ -153,6 +161,9 @@
       this.pubsub.subscribe("keyoff", function(m){
         console.log("key off", m);
       });
+
+      this.lowNote = props.lowNote;
+      this.highNote = props.highNote;
     }
 
     ensurePropsContainData(props){
@@ -174,6 +185,14 @@
       if (props.lowNote > props.highNote){
         console.warn("SVGIntPiano: improperly specified lowNote and/or highNote");
         props.highNote = props.lowNote;
+      }
+    }
+
+    set(state, midiNum){
+      if (midiNum >= this.lowNote && midiNum <= this.highNote){
+        this.keys[midiNum].set(state);
+      } else {
+        console.warn("Midi number out of range: "+midiNum);
       }
     }
     
@@ -231,7 +250,7 @@
           key_props.x = props.margin + currentKey*(whiteKeyWidth+props.whiteKeySpacing);
           key_props.midiNumber = currentNote;
 
-          this.keys.push(new Key(this.svg, svg_ns, key_props, this.pubsub));
+          this.keys[currentNote] = new Key(this.svg, svg_ns, key_props, this.pubsub);
 
           currentKey += 1;
         }
@@ -267,7 +286,7 @@
           key_props.x = whiteKeyX - blackKeyWidth/2 - props.whiteKeySpacing/2;
           key_props.midiNumber = currentNote;
 
-          this.keys.push(new Key(this.svg, svg_ns, key_props, this.pubsub));
+          this.keys[currentNote] = new Key(this.svg, svg_ns, key_props, this.pubsub);
         }
 
       }

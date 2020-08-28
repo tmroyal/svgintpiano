@@ -33,6 +33,14 @@ export default class Key {
     }
   }
 
+  set(state){
+    if (state === "on" || state){
+      this.rect.className.baseVal = this.cssActiveName;
+    } else if (state === "off" || !state){
+      this.rect.className.baseVal = this.cssInactiveName;
+    }
+  }
+
   attachEvents(){
     this.rect.onmousedown = this.keyOn.bind(this);
     this.rect.onmouseup = this.keyOff.bind(this);
