@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demonstrate SVGIntPiano as a displayer</title>
+  <!-- -->
+  <link rel="stylesheet" href="../dist/svgintpiano.css">
+
+  <!-- for this example, we disable hover effects -->
+  <style>
+.svgkey_off:hover {
+  stroke: black;
+  fill: white;
+  stroke-width: 0.5px;
+}
+
+.svgkey_off:hover {
+  stroke: black;
+  fill: white;
+  stroke-width: 0.5px;
+}
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  padding: 10px 30px;
+}
+code {
+  font-family: monospace;
+}
+#buttons {
+  padding-top: 30px;
+}
+  </style>
+
+</head>
+<body>
+  <h1>Demonstrating key display using <code>set()</code></h1>
+  <div id="cont"></div>
+  <div id="buttons">
+    <button id="CMButton">C Major</button>
+    <button id="D7Button">D7</button>
+    <button id="Gm9Button">GMinor9</button>
+    <button id="clearButton">Clear</button>
+  </div>
+  <script src="../dist/svgintpiano.js"></script>
+  <script src="chordDisplayer.js"></script>
+</body>
+</html>
