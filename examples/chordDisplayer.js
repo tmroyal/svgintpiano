@@ -6,27 +6,29 @@
     <button id="Gm9Button">GMinor9</button>
     <button id="clearButton">Clear</button>*/
 
-  document.getElementById("CMButton").onclick = ()=>{
+  document.getElementById("CMButton").addEventListener("mousedown", ()=>{
     piano.clear();
     [60,64,67].forEach((midiNote)=>{
       piano.set(true, midiNote);
     })
-  } 
+  });
 
-  document.getElementById("D7Button").onclick = ()=>{
+  document.getElementById("D7Button").addEventListener("mousedown", ()=>{
     piano.clear();
     [62, 66, 69, 72].forEach((midiNote)=>{
       piano.set(true, midiNote);
     })
-  } 
-  document.getElementById("Gm9Button").onclick = ()=>{
+  });
+
+  document.getElementById("Gm9Button").addEventListener("mousedown", ()=>{
     piano.clear();
     [55, 58, 62, 65, 69].forEach((midiNote)=>{
       piano.set(true, midiNote);
     })
-  } 
-  document.getElementById("clearButton").onclick = ()=>{
+  });
+
+  document.getElementById("clearButton").addEventListener("mousedown", ()=>{
     piano.clear();
-  } 
+  });
 
 })();
