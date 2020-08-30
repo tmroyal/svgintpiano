@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=ale=1.0">
+  <link rel="stylesheet" href="keyboardStyling.css">
+  <title>Keyboard styling</title>
+</head>
+<body>
+  <h1>Keyboard styling using custom CSS and parameters</h1> 
+  <div id="cont"></div>
+  <script src="../dist/svgintpiano.js"></script>
+  <script>
+    var params = {
+      height: 100,
+      blackKeyVScale: 0.5,
+      blackKeyHScale: 1,
+      whiteKeySpacing: 6,
+      margin: -1
+    };
+    var piano = new SVGIntPiano("cont", params);
+  </script>
+</body>
+</html>

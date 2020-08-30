@@ -1,0 +1,43 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  padding: 10px 30px;
+}
+
+.svgkey_off {
+  stroke: black;
+  fill: darkslateblue;
+  stroke-width: 2px;
+}
+
+.svgkey_on {
+  stroke:black ;
+  fill: slateblue;
+  stroke-width: 2px;
+}
+
+.svgkey_off:hover {
+  stroke: black;
+  fill: white;
+  stroke-width: 2px;
+}
+
+.svgkey_black_off {
+  stroke: white;
+  fill: lightseagreen;
+  stroke-width: 0.5px;
+}
+
+.svgkey_black_on {
+  stroke: black;
+  fill: lightsteelblue;
+  stroke-width: 0.5px;
+}
+
+.svgkey_black_off:hover {
+  stroke: black;
+  fill: white;
+  stroke-width: 0.5px;
+}
