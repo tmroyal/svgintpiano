@@ -1,6 +1,6 @@
 # SVGIntPiano
 
-An interactive svgpiano written in pure JavaScript with no dependencies
+An interactive SVG piano keyboard plugin written in pure JavaScript with no dependencies
 
 This library/plugin provides a stylable piano keyboard using SVG and CSS. The library
 can function both as an input and output. The goal is to be very lightweight so that it contains a small footprint and remains modifiable. 
