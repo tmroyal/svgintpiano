@@ -144,6 +144,6 @@ Note as well, psuedo selectors such as ```hover``` are available to SVG rectangl
 
 ## Contributing
 
-I do not have a maintenance right now for accepting issues and pull requests. If you send one, I will try my best to answer questions or accept the pull request if its appropriate.
+I do not have a maintenance model right now for accepting issues and pull requests. If you send one, I will try my best to answer questions or accept the pull request if its appropriate.
 
 Thanks!
