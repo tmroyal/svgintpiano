@@ -188,6 +188,12 @@
       }
     }
 
+    clear(){
+      for (let i = this.lowNote; i <= this.highNote; i++){
+        this.keys[i].set(false);
+      }
+    }
+
     subscribe(eventType, callback){
       return this.pubsub.subscribe(eventType, callback);
     }
