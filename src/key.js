@@ -42,21 +42,30 @@ export default class Key {
   }
 
   attachEvents(){
-    this.rect.onmousedown = this.keyOn.bind(this);
-    this.rect.onmouseup = this.keyOff.bind(this);
-
-    this.rect.onmouseenter = (function(e){
-      if (e.buttons > 0){
+      this.rect.addEventListener("touchstart", (function(e){
         this.keyOn();
-      }
-    }).bind(this);
+        e.preventDefault();
+      }).bind(this));
 
-    this.rect.onmouseleave = (function(e){
-      if (e.buttons > 0){
+      this.rect.addEventListener("touchend",(function(e){
         this.keyOff();
-      }
-    }).bind(this);
+        e.preventDefault();
+      }).bind(this));
 
+      this.rect.onmousedown = this.keyOn.bind(this);
+      this.rect.onmouseup = this.keyOff.bind(this);
+
+      this.rect.onmouseenter = (function(e){
+        if (e.buttons > 0){
+          this.keyOn();
+        }
+      }).bind(this);
+
+      this.rect.onmouseleave = (function(e){
+        if (e.buttons > 0){
+          this.keyOff();
+        }
+      }).bind(this);
   }
 
   draw(svg, ns, props){
