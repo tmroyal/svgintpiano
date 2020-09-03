@@ -1,9 +1,9 @@
 {
   "name": "svg-interactive-piano",
   "version": "0.0.1-a",
-  "private": true,
+  "private": false,
   "description": "A dependency free piano display and interaction plugin for browsers using svg.",
-  "main": "index.js",
+  "main": "dist/svgintpiano.js",
   "scripts": {
     "test": "node -r esm test/testPubSub.js",
     "build": "rollup src/index.js --file dist/svgintpiano.js --format umd --name 'SVGIntPiano'",
